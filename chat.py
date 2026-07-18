@@ -16,17 +16,11 @@ def chatting():
         command = input("Select Option: ").strip().upper()
         match command:
             case "START":
-                print("Enter the order details to add a new route.")
                 smsbot.start()
             case "UPDATE":
-                oid = input("Enter order number to update: ")
-                curloc = input("Enter current location: ")
-                smsbot.update(oid, curloc)
+                smsbot.update()
             case "VIEW":
-                print("text 1 to view all orders or 2 to view a specific order")
-                file_name = "route_sheet.xlsx"
-                df = pd.read_excel(file_name)
-                print(df.to_markdown(index=False))
+                smsbot.view()
             case "QUIT":
                 print("Exiting the chat. Goodbye!")
                 break

@@ -1,17 +1,8 @@
 import openpyxl
 import pandas as pd
+import filehandler as fh
 # test code for adding a new route to the route_sheet.xlsx file
-file_name = "route_sheet.xlsx"
 
-workbook = openpyxl.load_workbook(file_name)
-sheet = workbook.active
-
-"""new_route_data = [104, "New York", "Philadelphia", "Washington D.C."]
-
-sheet.append(new_route_data)
-
-workbook.save(file_name)
-print("Successfully added the new route data!")"""
 
 def start():
     print("Enter the order details to add a new route.")
@@ -21,11 +12,15 @@ def start():
     destination = input("Enter destination: ")
 
     route_data = [order_number, origin, origin, destination, "In Transit"]
-    sheet.append(route_data)
-    workbook.save(file_name)
+    fh.save_data(route_data)
     print("Successfully added the new route data!")
 
 def update():
+    file_name = "route_sheet.xlsx"
+
+    workbook = openpyxl.load_workbook(file_name)
+    sheet = workbook.active
+    
     order_number = input("Enter order number to update: ")
     current_location = input("Enter current location: ")
     for row in sheet.iter_rows(min_row=2, values_only=False):
@@ -43,7 +38,10 @@ def update():
 def view():
     print("text 1 to view all orders or 2 to view a specific order")
     choice = input("choose option: ")
-    
+    file_name = "route_sheet.xlsx"
+
+    workbook = openpyxl.load_workbook(file_name)
+    sheet = workbook.active
     # 1. Load the Excel file FIRST, before the if/elif blocks, 
     # so 'df' is available to both options.
     df = pd.read_excel(file_name) 

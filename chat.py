@@ -25,7 +25,6 @@ def chatting():
                 print("Exiting the chat. Goodbye!")
                 break
             case _:
-            # The underscore (_) acts as the default / wildcard case
                 print("Unknown command!")
 
 chatting()
